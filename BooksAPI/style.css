@@ -1,0 +1,13 @@
+﻿.book_item {
+    width: 300px;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tot_items {
+    font-size: 12px;
+    padding: 0px;
+    vertical-align: middle;
+    color: green !important;
+}
