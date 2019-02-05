@@ -18,6 +18,8 @@ $('#btn_search').on('click', function (e) {
     //If your in the checkout meny, then fade it out.
     $("#checkout").fadeOut();
     $("#bookcontainer").delay(500).fadeIn();
+    var body = $("#app");
+    body[0].style.backgroundImage = "url('')";
 
 
     var search_string = $('#input_search').val();
