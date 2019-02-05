@@ -34,6 +34,11 @@ namespace BooksAPI
 
             return books;
         }
+        public Book[] GetAllBooks()
+        {
+
+            return catalog.ToArray();
+        }
         /// <summary>
         /// Deserializes the Book.xml file to Book.cs objects
         /// and them adds the object to the catalog.

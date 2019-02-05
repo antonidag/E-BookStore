@@ -23,5 +23,9 @@ namespace BooksAPI.Controllers
         {
             return Ok(catalog.GetBooksByAuthor(author));
         }
+        public IHttpActionResult GetBooks()
+        {
+            return Ok(catalog.GetAllBooks());
+        }
     }
 }

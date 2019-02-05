@@ -196,7 +196,9 @@
     <Content Include="Global.asax" />
     <Content Include="img\book.svg" />
     <Content Include="index.html" />
-    <Content Include="main.js" />
+    <Content Include="main.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

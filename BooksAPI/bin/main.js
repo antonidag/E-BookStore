@@ -7,18 +7,20 @@
         });
     }
 
+
+
+
+
+
 });
 
 var uri = 'http://localhost:49879/api/books?title=';
 
 //Click event on btn_search make a ajax request to web api.
 $('#btn_search').on('click', function (e) {
-
     var search_string = $('#input_search').val();
-
-    // Send an AJAX request
     if (search_string.length > 0) {
-        
+        // Send an AJAX request
         uri += search_string;
         $.ajax({
             url: uri, success: function (result) {
