@@ -1,18 +1,34 @@
 ﻿$(document).ready(() => {
+    $("#btn_checkout").on('click', function (e){
+        $("#bookcontainer").fadeOut();
+        $("#checkout").delay(500).fadeIn();
+    });
+    $("#btn_backtoshop").on('click', function(e){
+        $("#checkout").fadeOut();
+        $("#bookcontainer").delay(500).fadeIn();
 
-
+    });
 });
 
 var uri = 'http://localhost:49879/api/books?title=';
 
 //Click event on btn_search make a ajax request to web api.
 $('#btn_search').on('click', function (e) {
+
+    //If your in the checkout meny, then fade it out.
+    $("#bookcontainer").html("");
+    $("#checkout").fadeOut();
+    $("#bookcontainer").delay(500).fadeIn();
+    var body = $("#app");
+    body[0].style.backgroundImage = "url('')";
+
+
     var search_string = $('#input_search').val();
 
     // Send an AJAX request
     if (search_string.length > 0) {
         uri += search_string;
-        searchBooks(url);
+        searchBooks(uri);
     } else {
         uri = 'http://localhost:49879/api/books';
         searchBooks(uri);
@@ -61,6 +77,7 @@ function addToView(item) {
   btn.type = "button";
   btn.className = "btn btn-warning";
   btn.innerHTML = "Buy Now";
+  btn.addEventListener("click", (event) => buy(event));
 
   book_item.appendChild(img);
   book_item.appendChild(title);
@@ -74,21 +91,34 @@ function addToView(item) {
   var currentDiv = document.getElementById("bookcontainer");
   currentDiv.appendChild(book_item);
 
-  addClickOnBtn();
 }
-
-function addClickOnBtn(){
-  var btn_buy = document.getElementsByClassName("btn btn-warning");
-  for (var i = 0; i < btn_buy.length; i++) {
-      btn_buy[i].addEventListener("click", function () {
-          buy(event);
-      });
-  }
-}
-
-
 
 function buy(e) {
     var target = e.target.parentElement;
     console.log(target);
+    var title = target.childNodes[1].innerHTML;
+    var strPrice = target.childNodes[6].childNodes[0].innerHTML;
+
+    var price = parseFloat(strPrice.substring(7, strPrice.length - 2));
+    console.log(price);
+
+    addToCheckOut(title, price);
+    
+}
+
+
+var sumPrice = 0;
+var numberOfBooks = 1;
+function addToCheckOut(title, price){
+    var li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = title;
+
+    var ul = document.getElementById("checkoutlist");
+    ul.appendChild(li);
+    sumPrice += price;
+
+    var textprice = document.getElementById("sumPrice");
+    textprice.innerHTML = "<strong>Summary: " + sumPrice + " $</strong>";
+    $("#btn_checkout").html(numberOfBooks++);
 }

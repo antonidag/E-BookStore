@@ -10,12 +10,13 @@
     });
 });
 
-var uri = 'http://localhost:49879/api/books?title=';
+var uri = '';
 
 //Click event on btn_search make a ajax request to web api.
 $('#btn_search').on('click', function (e) {
 
     //If your in the checkout meny, then fade it out.
+    $("#bookcontainer").html("");
     $("#checkout").fadeOut();
     $("#bookcontainer").delay(500).fadeIn();
     var body = $("#app");
@@ -26,7 +27,7 @@ $('#btn_search').on('click', function (e) {
 
     // Send an AJAX request
     if (search_string.length > 0) {
-        uri += search_string;
+        uri = 'http://localhost:49879/api/books?title=' + search_string;
         searchBooks(uri);
     } else {
         uri = 'http://localhost:49879/api/books';
@@ -95,6 +96,13 @@ function addToView(item) {
 function buy(e) {
     var target = e.target.parentElement;
     console.log(target);
+    var title = target.childNodes[1].innerHTML;
+    var strPrice = target.childNodes[6].childNodes[0].innerHTML;
+
+    var price = parseFloat(strPrice.substring(7, strPrice.length - 2));
+    console.log(price);
+
+    addToCheckOut(title, price);
     
 }
 
