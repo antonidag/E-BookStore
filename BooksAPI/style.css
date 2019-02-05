@@ -14,12 +14,6 @@
         background-color: #E5E5E5;
     }
 
-.tot_items {
-    font-size: 12px;
-    padding: 0px;
-    vertical-align: middle;
-    color: green !important;
-}
 
 img {
   width: 50px;
@@ -27,4 +21,14 @@ img {
 #btn_buy {
     position: absolute;
     bottom: 8px;
+}
+
+
+
+.list-group {
+    width: 55%;
+}
+.list-group li:hover{
+    background-color: #E5E5E5;
+
 }
