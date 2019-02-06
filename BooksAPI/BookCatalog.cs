@@ -22,22 +22,45 @@ namespace BooksAPI
         {
             catalog.Add(book);
         }
+        /// <summary>
+        /// Retuns the books containing the input string
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns>A array of books</returns>
         public Book[] GetBooksByTitle(string title)
         {
-            Book[] books = catalog.Where((p) => p.Title.Contains(title)).ToArray();
+            Book[] books = catalog.Where((p) => ToLower(p.Title).Contains(ToLower(title))).ToArray();
 
             return books;
         }
+        /// <summary>
+        /// Retuns the books containing the input string
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns>A array of books</returns>
         public Book[] GetBooksByAuthor(string author)
         {
-            Book[] books = catalog.Where((p) => p.Author.Contains(author)).ToArray();
+            Book[] books = catalog.Where((p) => ToLower(p.Author).Contains(ToLower(author))).ToArray();
 
             return books;
         }
+        /// <summary>
+        /// Retuns all book in the catalog
+        /// </summary>
+        /// <returns>A array of books</returns>
         public Book[] GetAllBooks()
         {
 
             return catalog.ToArray();
+        }
+        /// <summary>
+        /// Retuns a string with all lower case
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns>string</returns>
+        private string ToLower(string s)
+        {
+            return s.ToLower();
         }
         /// <summary>
         /// Deserializes the Book.xml file to Book.cs objects
