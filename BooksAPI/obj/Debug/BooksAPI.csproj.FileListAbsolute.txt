@@ -94,3 +94,4 @@ C:\Users\antonidag\Documents\GitHub\E-BookStore\BooksAPI\obj\Debug\BooksAPI.cspr
 C:\Users\antonidag\Documents\GitHub\E-BookStore\BooksAPI\obj\Debug\BooksAPI.dll
 C:\Users\antonidag\Documents\GitHub\E-BookStore\BooksAPI\obj\Debug\BooksAPI.pdb
 C:\Users\antonidag\Documents\GitHub\E-BookStore\BooksAPI\bin\main.js
+C:\Users\antonidag\Documents\GitHub\E-BookStore\BooksAPI\obj\Debug\BooksAPI.csprojResolveAssemblyReference.cache
