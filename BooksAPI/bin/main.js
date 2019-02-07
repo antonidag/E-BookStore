@@ -23,7 +23,6 @@ $('#btn_search').on('click', function (e) {
     var body = $("#app");
     body[0].style.backgroundImage = "url('')";
 
-
     var search_string = $('#input_search').val();
     searchBooks(search_string);
 });
@@ -61,7 +60,7 @@ function ajax(uri) {
 
 //Adds items to bookcontainer.
 function addToView(item) {
-    // Create all the divs and fill wiht info,
+    // Create all the divs and fill whit info from the input.
   var book_item = document.createElement("div");
   book_item.className = "book_item";
   book_item.id = "book";
@@ -73,7 +72,7 @@ function addToView(item) {
   title.innerHTML = item.Title;
 
   var author = document.createElement("p");
-  author.innerHTML = "<strong>" + item.Author + "</strong>"
+  author.innerHTML = "<strong>" + item.Author + "</strong>";
 
   var genre = document.createElement("p");
   genre.innerHTML = "<i>" + item.Genre + "</i>";
@@ -87,7 +86,7 @@ function addToView(item) {
   var price = document.createElement("p");
   price.innerHTML = "<strong>Price: " + item.Price + " $</strong>";
 
-    //Create btn and add click event.
+  //Create btn and add click event.
   var btn = document.createElement("button");
   btn.id = "btn_buy";
   btn.type = "button";
@@ -95,7 +94,7 @@ function addToView(item) {
   btn.innerHTML = "Buy Now";
   btn.addEventListener("click", (event) => buy(event));
 
-  
+  // Append all the elements to the book_item.
   book_item.appendChild(img);
   book_item.appendChild(title);
   book_item.appendChild(author);
@@ -105,6 +104,7 @@ function addToView(item) {
   book_item.appendChild(price);
   book_item.appendChild(btn);
 
+  // Append the book_item to the DOM.
   var currentDiv = document.getElementById("bookcontainer");
   currentDiv.appendChild(book_item);
 }
@@ -113,6 +113,7 @@ function addToView(item) {
 function buy(e) {
     // Get the btn parent element
     var target = e.target.parentElement;
+
     // Get the Title and price
     var title = target.childNodes[1].innerHTML;
     var strPrice = target.childNodes[6].childNodes[0].innerHTML;
