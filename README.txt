@@ -1,7 +1,7 @@
 1. Öppna BooksAPI.sln
 2. Kör sedan programmet. 
 3. Det som först kommer upp är Webb API:et. 
-4. Köra klienent genom att navigera till http://{localhost}/index.html
+4. Köra klienten genom att navigera till http://{localhost}/index.html
 
 
 Sedan är det bara att söka efter böcker! 
