@@ -6,7 +6,7 @@
 
 Sedan är det bara att söka efter böcker! 
 
-Jag hade kunnat göra ännu fler funktioner men jag tänkte att detta här lagom. 
+Jag hade kunnat göra ännu fler funktioner men jag tänkte att detta här blir lagom. 
 
 Jag ser framemot er feedback. 
 
