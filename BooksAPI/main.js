@@ -1,9 +1,14 @@
-﻿$("#btn_checkout").on('click', function (e) {
+﻿$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+$("#btn_checkout").on('click', function (e) {
     var body = $("#app");
     body[0].style.backgroundImage = "url('')";
     $("#bookcontainer").fadeOut();
     $("#checkout").delay(500).fadeIn();
 });
+
 $("#btn_backtoshop").on('click', function (e) {
 
     $("#checkout").fadeOut();
@@ -16,15 +21,42 @@ var uri = '';
 //Click event on btn_search make a ajax request to web api.
 $('#btn_search').on('click', function (e) {
 
-    //If your in the checkout meny, then fade it out.
+    fadeout();
+    var search_string = $('#input_search').val();
+    searchBooks(search_string);
+});
+
+$(document).keyup(function (event) {
+    if ($("#input_search").is(":focus") && event.key == "Enter") {
+        fadeout();
+
+        var search_string = $('#input_search').val();
+        searchBooks(search_string);
+    }
+});
+
+function fadeout() {
     $("#bookcontainer").html("");
     $("#checkout").fadeOut();
     $("#bookcontainer").delay(500).fadeIn();
     var body = $("#app");
     body[0].style.backgroundImage = "url('')";
+}
 
-    var search_string = $('#input_search').val();
-    searchBooks(search_string);
+$("#searchby").change(function () {
+    var searchby = $("#searchby").val();
+    switch (searchby) {
+        case "Title":
+            $("#input_search").attr('title', 'Example: The Hobbit').tooltip('fixTitle').tooltip('show');
+            break;
+        case "Author":
+            $("#input_search").attr('title', 'Example: John').tooltip('fixTitle').tooltip('show');
+            break;
+        case "Genre":
+            $("#input_search").attr('title', 'Example: Computer').tooltip('fixTitle').tooltip('show');
+            break;
+        default:
+    }
 });
 
 // Make Ajax request to api
@@ -38,6 +70,10 @@ function searchBooks(input) {
                 break;
             case "Author":
                 uri = 'http://localhost:49879/api/Books?author=' + input;
+                ajax(uri);
+                break;
+            case "Genre":
+                uri = 'http://localhost:49879/api/Books?genre=' + input;
                 ajax(uri);
                 break;
             default:
@@ -56,7 +92,6 @@ function ajax(uri) {
         }
     });
 }
-
 
 //Adds items to bookcontainer.
 function addToView(item) {
@@ -122,20 +157,50 @@ function buy(e) {
     addToCheckOut(title, price);
 }
 
-
 // Adds book to checkout.
 var sumPrice = 0;
-var numberOfBooks = 1;
+
+var numberOfBooks = 0;
+
 function addToCheckOut(title, price){
     var li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML = title;
+    li.value = price;
+
+    var btn = document.createElement("span");
+    btn.id = "btn_removeItm";
+    btn.className = "close";
+    btn.innerHTML = "X";
+    btn.addEventListener("click", (event) => removeItem(event));
+
+    li.appendChild(btn);
 
     var ul = document.getElementById("checkoutlist");
     ul.appendChild(li);
+
     sumPrice += price;
+
+    //Create btn and add click event.
+
 
     var textprice = document.getElementById("sumPrice");
     textprice.innerHTML = "<strong>Summary: " + sumPrice + " $</strong>";
-    $("#btn_checkout").html(numberOfBooks++);
+    numberOfBooks++;
+    $("#btn_checkout").html(numberOfBooks);
+}
+
+function removeItem(event) {
+    // Get the btn parent element
+    var target = event.target.parentElement;
+
+    var price = target.value;
+    //sumPrice += price;
+
+    var textprice = document.getElementById("sumPrice");
+    textprice.innerHTML = "<strong>Summary: " + sumPrice + " $</strong>";
+    numberOfBooks--;
+
+    $("#btn_checkout").html(numberOfBooks);
+    $(target).remove();
 }

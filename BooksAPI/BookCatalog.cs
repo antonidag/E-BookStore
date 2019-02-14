@@ -45,6 +45,17 @@ namespace BooksAPI
             return books;
         }
         /// <summary>
+        /// Retuns the books containing the input string
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns>A array of books</returns>
+        public Book[] GetBooksByGenre(string genre)
+        {
+            Book[] books = catalog.Where((p) => ToLower(p.Genre) == (ToLower(genre))).ToArray();
+
+            return books;
+        }
+        /// <summary>
         /// Retuns all book in the catalog
         /// </summary>
         /// <returns>A array of books</returns>

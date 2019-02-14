@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body id="app">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -17,12 +18,13 @@
             </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <input id="input_search" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search titles or authors">
+                    <input id="input_search" class="form-control form-control-lg form-control-borderless" data-toggle="tooltip" data-placement="bottom" title="Example: The Hobbit" type="search" placeholder="Search titles or authors">
                 </li>
                 <li>
-                    <select id="searchby" class="form-control form-control-sm">
+                    <select id="searchby"   class="form-control form-control-sm">
                         <option>Title</option>
                         <option>Author</option>
+                        <option>Genre</option>
                     </select>
                 </li>
                 <li>

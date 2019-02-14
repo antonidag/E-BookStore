@@ -23,6 +23,10 @@ namespace BooksAPI.Controllers
         {
             return Ok(catalog.GetBooksByAuthor(author));
         }
+        public IHttpActionResult GetGenre(string genre)
+        {
+            return Ok(catalog.GetBooksByGenre(genre));
+        }
         public IHttpActionResult GetBooks()
         {
             return Ok(catalog.GetAllBooks());
