@@ -166,7 +166,9 @@ function addToCheckOut(title, price){
     var li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML = title;
-    li.value = price;
+
+    var p = document.createElement("p");
+    p.innerHTML = price;
 
     var btn = document.createElement("span");
     btn.id = "btn_removeItm";
@@ -174,7 +176,9 @@ function addToCheckOut(title, price){
     btn.innerHTML = "X";
     btn.addEventListener("click", (event) => removeItem(event));
 
-    li.appendChild(btn);
+    li.appendChild(p);
+
+    p.appendChild(btn);
 
     var ul = document.getElementById("checkoutlist");
     ul.appendChild(li);
@@ -192,15 +196,18 @@ function addToCheckOut(title, price){
 
 function removeItem(event) {
     // Get the btn parent element
-    var target = event.target.parentElement;
+    var p = event.target.parentElement;
+    var li = p.parentElement;
+    var price = parseFloat(p.innerHTML);
 
-    var price = target.value;
-    //sumPrice += price;
+
+    sumPrice -= price;
+
 
     var textprice = document.getElementById("sumPrice");
     textprice.innerHTML = "<strong>Summary: " + sumPrice + " $</strong>";
     numberOfBooks--;
 
     $("#btn_checkout").html(numberOfBooks);
-    $(target).remove();
+    $(li).remove();
 }
