@@ -154,7 +154,9 @@ function buy(e) {
     var strPrice = target.childNodes[6].childNodes[0].innerHTML;
     var price = parseFloat(strPrice.substring(7, strPrice.length - 2));
 
-    addToCheckOut(title, price);
+    var fixedPrice = price.toFixed(2);
+
+    addToCheckOut(title, fixedPrice);
 }
 
 // Adds book to checkout.
@@ -183,9 +185,9 @@ function addToCheckOut(title, price){
     var ul = document.getElementById("checkoutlist");
     ul.appendChild(li);
 
-    sumPrice += price;
-
-    //Create btn and add click event.
+    var sum = parseFloat(sumPrice) + parseFloat(price);
+    var fixedSumPrice = sum.toFixed(2);
+    sumPrice = fixedSumPrice;
 
 
     var textprice = document.getElementById("sumPrice");
@@ -201,7 +203,9 @@ function removeItem(event) {
     var price = parseFloat(p.innerHTML);
 
 
-    sumPrice -= price;
+    var sum = parseFloat(sumPrice) - parseFloat(price);
+    var fixedSumPrice = sum.toFixed(2);
+    sumPrice = fixedSumPrice;
 
 
     var textprice = document.getElementById("sumPrice");
