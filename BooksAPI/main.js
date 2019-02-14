@@ -36,7 +36,6 @@ $(document).keyup(function (event) {
     }
 });
 
-
 function fadeout() {
     $("#bookcontainer").html("");
     $("#checkout").fadeOut();

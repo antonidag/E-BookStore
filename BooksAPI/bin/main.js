@@ -26,6 +26,7 @@ $('#btn_search').on('click', function (e) {
     searchBooks(search_string);
 });
 
+// If Enter is pressed fade out then search on the book.
 $(document).keyup(function (event) {
     if ($("#input_search").is(":focus") && event.key == "Enter") {
         fadeout();
@@ -43,6 +44,7 @@ function fadeout() {
     body[0].style.backgroundImage = "url('')";
 }
 
+// Change to the tooltip to other text.
 $("#searchby").change(function () {
     var searchby = $("#searchby").val();
     switch (searchby) {
@@ -95,7 +97,7 @@ function ajax(uri) {
 
 //Adds items to bookcontainer.
 function addToView(item) {
-    // Create all the divs and fill whit info from the input.
+    // Create all the divs and fill wiht info from the item.
   var book_item = document.createElement("div");
   book_item.className = "book_item";
   book_item.id = "book";
@@ -154,16 +156,19 @@ function buy(e) {
     var strPrice = target.childNodes[6].childNodes[0].innerHTML;
     var price = parseFloat(strPrice.substring(7, strPrice.length - 2));
 
+
+    // Fix to decimals .11
     var fixedPrice = price.toFixed(2);
 
     addToCheckOut(title, fixedPrice);
 }
 
-// Adds book to checkout.
+
 var sumPrice = 0;
 
 var numberOfBooks = 0;
 
+// Adds a book to the chechoutlist
 function addToCheckOut(title, price){
     var li = document.createElement("li");
     li.className = "list-group-item";
@@ -185,6 +190,7 @@ function addToCheckOut(title, price){
     var ul = document.getElementById("checkoutlist");
     ul.appendChild(li);
 
+    // Fix price so there is only 2 decimals 0.11
     var sum = parseFloat(sumPrice) + parseFloat(price);
     var fixedSumPrice = sum.toFixed(2);
     sumPrice = fixedSumPrice;
@@ -196,13 +202,14 @@ function addToCheckOut(title, price){
     $("#btn_checkout").html(numberOfBooks);
 }
 
+// Removes a li from the checkoutlist.
 function removeItem(event) {
-    // Get the btn parent element
+    // Get the elements 
     var p = event.target.parentElement;
     var li = p.parentElement;
     var price = parseFloat(p.innerHTML);
 
-
+    // Fix price so there is only 2 decimals 0.11
     var sum = parseFloat(sumPrice) - parseFloat(price);
     var fixedSumPrice = sum.toFixed(2);
     sumPrice = fixedSumPrice;
@@ -215,3 +222,4 @@ function removeItem(event) {
     $("#btn_checkout").html(numberOfBooks);
     $(li).remove();
 }
+
