@@ -5,7 +5,3 @@
 
 
 Sedan är det bara att söka efter böcker! 
-
-Jag ser framemot er feedback. 
-
-Mvh Anton Björkman
